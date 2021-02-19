@@ -20,6 +20,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     FormsModule,
     HttpClientModule,
     BsDropdownModule.forRoot(),
+    BrowserAnimationsModule,
   ],
   providers: [AuthService, ErrorInterceptorProvider],
   bootstrap: [AppComponent],
