@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { map } from "rxjs/operators";
+import { environment } from "src/environments/environment";
 
 
 @Injectable({
@@ -9,7 +10,7 @@ import { map } from "rxjs/operators";
 })
 export class AuthService {
   jwtHelper = new JwtHelperService();
-  baseUrl = "http://localhost:5000/auth/";
+  baseUrl = environment.baseUri+"auth/";
   decodedToken:any;
 
   constructor(private http: HttpClient) {}
