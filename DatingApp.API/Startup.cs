@@ -41,6 +41,7 @@ namespace DatingApp.API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DatingApp.API", Version = "v1" });
             });
             services.AddCors();
+            services.Configure<CloudinarySettings>( Configuration.GetSection("CloudinarySettings"));
             services.AddAutoMapper(typeof(DatingRepository).Assembly);
             services.AddScoped<IAuthRepository, AuthRepository>(); 
             services.AddScoped<IDatingRepository, DatingRepository>(); 
