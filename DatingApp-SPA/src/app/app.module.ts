@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { TabsModule } from "ngx-bootstrap/tabs";
 import { AppRoutingModule } from "./app-routing.module";
 import { NgxGalleryModule } from "ngx-gallery";
+import { FileUploadModule } from "ng2-file-upload";
 
 //#endregion Module
 
@@ -23,6 +24,7 @@ import { MessagesComponent } from "./messages/messages.component";
 import { MemberCardComponent } from "./members/member-card/member-card.component";
 import { MemberDetailComponent } from "./members/member-detail/member-detail.component";
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
+import { PhotoEditComponent } from './members/photo-edit/photo-edit.component';
 
 //#endregion Component
 
@@ -38,6 +40,8 @@ import { ErrorInterceptorProvider } from "./_services/error.interceptor";
 import { AuthGuard } from "./_guards/auth.guard";
 import { MemberEditResolver } from "./_resolvers/member-edit.resolver";
 import { PreventUnSavedChanges } from "./_guards/prevent-unsaved-changes.guard";
+
+
 
 
 
@@ -60,6 +64,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
     MemberCardComponent,
     MemberDetailComponent,
     MemberEditComponent,
+    PhotoEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,6 +74,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     BrowserAnimationsModule,
+    FileUploadModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: () => {
