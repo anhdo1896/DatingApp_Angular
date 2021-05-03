@@ -23,4 +23,11 @@ export class UserService {
   updateUser(id : number, user: User): Observable<User>{
     return this.http.put<User>(this.baseUri+'user/'+id, user);
   }
+
+  setMainPhoto(userId : number, id: number){
+    return this.http.post<User>(this.baseUri+'user/'+userId+"/photo/"+id+"/setMain",{});
+  }
+  deletePhoto(userId : number, id: number){
+    return this.http.delete(this.baseUri+'user/'+userId+"/photo/"+id);
+  }
 }

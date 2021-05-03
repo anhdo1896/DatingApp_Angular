@@ -17,8 +17,11 @@
 
 
     <div *ngIf="loggedIn()" class="btn-group" dropdown>
-      <a id="button-basic" dropdownToggle class="text-light dropdown-toggle" aria-controls="dropdown-basic">
-        Welcome {{authService.decodedToken.unique_name | titlecase}} <span class="caret"></span>
+      <span class="mr-2">
+        <img [src]="photoUrl" />
+      </span>
+      <a  dropdownToggle class="text-light dropdown-toggle" aria-controls="dropdown-basic">
+        Welcome {{authService.decodedToken.unique_name | titlecase}}
       </a>
       <div *dropdownMenu class="dropdown-menu">
         <a class="dropdown-item" [routerLink]="['/member/edit']"  > <i class="fa fa-user"></i> Edit User</a>
