@@ -1,8 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { User } from "../_models/user";
 import { AlertifyService } from "../_services/alertify.service";
 import { AuthService } from "../_services/auth.service";
-
+import {Router} from '@angular/router';
 @Component({
   selector: "app-register",
   templateUrl: "./register.component.html",
@@ -10,12 +11,14 @@ import { AuthService } from "../_services/auth.service";
 })
 export class RegisterComponent implements OnInit {
   @Output() cancelRegister = new EventEmitter();
+  user: User;
   model: any = {};
   resgisterForm: FormGroup;
   constructor(
     private authService: AuthService,
     private alertifyService: AlertifyService,
-    private fb : FormBuilder
+    private fb : FormBuilder,
+    private router : Router
   ) {}
 
   ngOnInit() {
@@ -50,12 +53,21 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    // this.authService.register(this.model).subscribe(next => {
-    //   this.alertifyService.success("Register successfully")
-    // }, error => {
-    //   this.alertifyService.error(error);
-    // });
-    console.log(this.resgisterForm.value);
+    if(this.resgisterForm.valid){
+      this.user = Object.assign({},this.resgisterForm.value);
+      this.authService.register(this.user).subscribe(()=>{
+        this.alertifyService.success("Register successfully")
+      },error=> {
+        this.alertifyService.error(error);
+      },() => {
+        this.authService.login(this.user).subscribe(()=>{
+            this.router.navigate(['/members']);
+        })
+      })
+    }
+   
+
+    //console.log(this.resgisterForm.value);
   }
 
   cancel() {

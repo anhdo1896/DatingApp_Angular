@@ -7,6 +7,7 @@ import { AlertifyService } from "src/app/_services/alertify.service";
 import { environment } from "src/environments/environment";
 import { EventEmitter } from "@angular/core";
 import { error } from "selenium-webdriver";
+import { isBuffer } from "util";
 
 
 @Component({
@@ -54,8 +55,13 @@ export class PhotoEditComponent implements OnInit {
 
     this.uploader.onSuccessItem = (item, response, status, headers) => {
       if (response) {
-        const res: Photo = JSON.parse(response);
+        const res: Photo = JSON .parse(response);
         this.photos.push(res);
+        if(res.isMain){
+          this.authService.changeMemberPhoto(res.url);
+          this.authService.currentUser.photoUrl = res.url;
+          localStorage.setItem("user",JSON.stringify(this.authService.currentUser));
+        }
       }
     };
   }
