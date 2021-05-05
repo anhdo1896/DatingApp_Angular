@@ -1,7 +1,7 @@
 //#region Module
 import { BrowserModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { JwtModule } from "@auth0/angular-jwt";
 import { HttpClientModule } from "@angular/common/http";
 import { BsDropdownModule } from "ngx-bootstrap/dropdown";
@@ -70,6 +70,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
