@@ -1,5 +1,9 @@
 //#region Module
-import { BrowserModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG } from "@angular/platform-browser";
+import {
+  BrowserModule,
+  HammerGestureConfig,
+  HAMMER_GESTURE_CONFIG,
+} from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { JwtModule } from "@auth0/angular-jwt";
@@ -23,15 +27,14 @@ import { ListsComponent } from "./lists/lists.component";
 import { MessagesComponent } from "./messages/messages.component";
 import { MemberCardComponent } from "./members/member-card/member-card.component";
 import { MemberDetailComponent } from "./members/member-detail/member-detail.component";
-import { MemberEditComponent } from './members/member-edit/member-edit.component';
-import { PhotoEditComponent } from './members/photo-edit/photo-edit.component';
+import { MemberEditComponent } from "./members/member-edit/member-edit.component";
+import { PhotoEditComponent } from "./members/photo-edit/photo-edit.component";
 
 //#endregion Component
 
 //#region Service
 import { AuthService } from "./_services/auth.service";
 import { UserService } from "./_services/user.service";
-
 
 //#endregion Service
 import { environment } from "src/environments/environment";
@@ -40,15 +43,12 @@ import { ErrorInterceptorProvider } from "./_services/error.interceptor";
 import { AuthGuard } from "./_guards/auth.guard";
 import { MemberEditResolver } from "./_resolvers/member-edit.resolver";
 import { PreventUnSavedChanges } from "./_guards/prevent-unsaved-changes.guard";
+import { BsDatepickerModule } from "ngx-bootstrap";
 
-
-
-
-
-export class CustomHammerConfig extends HammerGestureConfig  {
+export class CustomHammerConfig extends HammerGestureConfig {
   overrides = {
-      pinch: { enable: false },
-      rotate: { enable: false }
+    pinch: { enable: false },
+    rotate: { enable: false },
   };
 }
 
@@ -68,6 +68,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
   ],
   imports: [
     BrowserModule,
+    BsDatepickerModule.forRoot(),
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
@@ -85,7 +86,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
         disallowedRoutes: [environment.baseUri + "/auth/"],
       },
     }),
-    NgxGalleryModule
+    NgxGalleryModule,
   ],
   providers: [
     AuthService,
@@ -95,7 +96,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
     MemberDetailResolver,
     MemberEditResolver,
     PreventUnSavedChanges,
-    { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig }
+    { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig },
   ],
   bootstrap: [AppComponent],
 })
