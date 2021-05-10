@@ -18,7 +18,7 @@
 
     <div *ngIf="loggedIn()" class="btn-group" dropdown>
       <span class="mr-2">
-        <img [src]="photoUrl" />
+        <img [src]="photoUrl || '../../../assets/doraemon.png'" />
       </span>
       <a  dropdownToggle class="text-light dropdown-toggle" aria-controls="dropdown-basic">
         Welcome {{authService.decodedToken.unique_name | titlecase}}
