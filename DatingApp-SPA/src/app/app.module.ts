@@ -25,6 +25,7 @@ import { MemberCardComponent } from "./members/member-card/member-card.component
 import { MemberDetailComponent } from "./members/member-detail/member-detail.component";
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { PhotoEditComponent } from './members/photo-edit/photo-edit.component';
+import { TimeAgoPipe } from "time-ago-pipe";
 
 //#endregion Component
 
@@ -40,6 +41,7 @@ import { ErrorInterceptorProvider } from "./_services/error.interceptor";
 import { AuthGuard } from "./_guards/auth.guard";
 import { MemberEditResolver } from "./_resolvers/member-edit.resolver";
 import { PreventUnSavedChanges } from "./_guards/prevent-unsaved-changes.guard";
+
 
 
 
@@ -65,6 +67,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
     MemberDetailComponent,
     MemberEditComponent,
     PhotoEditComponent,
+    TimeAgoPipe
   ],
   imports: [
     BrowserModule,
@@ -85,7 +88,8 @@ export class CustomHammerConfig extends HammerGestureConfig  {
         disallowedRoutes: [environment.baseUri + "/auth/"],
       },
     }),
-    NgxGalleryModule
+    NgxGalleryModule,
+    
   ],
   providers: [
     AuthService,
