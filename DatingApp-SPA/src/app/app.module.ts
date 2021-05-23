@@ -11,9 +11,12 @@ import { HttpClientModule } from "@angular/common/http";
 import { BsDropdownModule } from "ngx-bootstrap/dropdown";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { TabsModule } from "ngx-bootstrap/tabs";
-import { AppRoutingModule } from "./app-routing.module";
 import { NgxGalleryModule } from "ngx-gallery";
+import { AppRoutingModule } from "./app-routing.module";
+
 import { FileUploadModule } from "ng2-file-upload";
+import { PaginationModule } from "ngx-bootstrap/pagination";
+import { ButtonsModule } from "ngx-bootstrap/buttons";
 
 //#endregion Module
 
@@ -27,8 +30,8 @@ import { ListsComponent } from "./lists/lists.component";
 import { MessagesComponent } from "./messages/messages.component";
 import { MemberCardComponent } from "./members/member-card/member-card.component";
 import { MemberDetailComponent } from "./members/member-detail/member-detail.component";
-import { MemberEditComponent } from './members/member-edit/member-edit.component';
-import { PhotoEditComponent } from './members/photo-edit/photo-edit.component';
+import { MemberEditComponent } from "./members/member-edit/member-edit.component";
+import { PhotoEditComponent } from "./members/photo-edit/photo-edit.component";
 import { TimeAgoPipe } from "time-ago-pipe";
 
 //#endregion Component
@@ -46,10 +49,7 @@ import { MemberEditResolver } from "./_resolvers/member-edit.resolver";
 import { PreventUnSavedChanges } from "./_guards/prevent-unsaved-changes.guard";
 import { BsDatepickerModule } from "ngx-bootstrap";
 
-
-
-
-export class CustomHammerConfig extends HammerGestureConfig  {
+export class CustomHammerConfig extends HammerGestureConfig {
   overrides = {
     pinch: { enable: false },
     rotate: { enable: false },
@@ -69,18 +69,21 @@ export class CustomHammerConfig extends HammerGestureConfig  {
     MemberDetailComponent,
     MemberEditComponent,
     PhotoEditComponent,
-    TimeAgoPipe
+    TimeAgoPipe,
   ],
   imports: [
     BrowserModule,
-    BsDatepickerModule.forRoot(),
-    AppRoutingModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
+    BrowserAnimationsModule,
+    BsDatepickerModule.forRoot(),
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
-    BrowserAnimationsModule,
+    PaginationModule.forRoot(),
+    ButtonsModule.forRoot(),
+    AppRoutingModule,
+    NgxGalleryModule,
     FileUploadModule,
     JwtModule.forRoot({
       config: {
@@ -91,8 +94,6 @@ export class CustomHammerConfig extends HammerGestureConfig  {
         disallowedRoutes: [environment.baseUri + "/auth/"],
       },
     }),
-    NgxGalleryModule,
-    
   ],
   providers: [
     AuthService,
