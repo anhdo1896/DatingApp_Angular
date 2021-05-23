@@ -20,6 +20,7 @@ export class MemberListComponent implements OnInit {
     minAge: 18,
     maxAge: 99,
     gender: this.user.gender === "female" ? "male" : "female",
+    orderBy: 'lastActive'
   };
   pageNumber = 1;
   pageSize = 5;

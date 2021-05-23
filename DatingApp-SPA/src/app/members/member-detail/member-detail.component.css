@@ -14,3 +14,8 @@
   padding: 10px 15px;
   border: none;
 }
+
+.ngx-gallery { display: inline-block; margin-bottom: 20px; }
+/* .ngx-gallery .ngx-gallery-image[_ngcontent-ior-c4]{
+  background-position:inherit!important
+} */

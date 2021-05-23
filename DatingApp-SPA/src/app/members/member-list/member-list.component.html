@@ -39,8 +39,14 @@
     </div>
     <button type="submit" class="btn btn-primary mx-2">Apply filter</button>
     <button type="button" (click) = "resetFilter()" class="btn btn-info mx-2">Reset filter</button>
+    <div class="col">
+      <div class="btn-group float-right"  >
+        <label class="btn btn-primary" btnRadio="lastActive" name="orderBy" [(ngModel)]="userParams.orderBy" (click)="loadUsers()">Last Active</label>
+        <label class="btn btn-primary" btnRadio="created" name="orderBy" [(ngModel)]="userParams.orderBy" (click)="loadUsers()">Newest Member</label>
+      </div>
+    </div>
   </form>
-
+  
   <div class="row">
     <div *ngFor="let user of users" class="col-lg-2 col-md-3 col-sm-6">
       <app-member-card [user]="user"></app-member-card>

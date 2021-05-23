@@ -1,34 +1,38 @@
 <div class="container mt-4 mb-2">
   <div class="row">
     <div class="col-sm-4">
-      <h4>{{user.knownAs}}'s Profile</h4>
+      <h4>{{ user.knownAs }}'s Profile</h4>
     </div>
   </div>
   <div class="row">
     <div class="col-sm-4">
       <div class="card">
-        <img class="card-img-top img-thumbnails" [src]="user.photoUrl || '../../../assets/doraemon.png'" [alt]="user.knownAs">
+        <img
+          class="card-img-top img-thumbnails"
+          [src]="user.photoUrl || '../../../assets/doraemon.png'"
+          [alt]="user.knownAs"
+        />
         <div class="card-body">
           <div>
             <strong>Location:</strong>
-            <p>{{ user.city}} , {{ user.country }}</p>
+            <p>{{ user.city }} , {{ user.country }}</p>
           </div>
           <div>
             <strong>Age:</strong>
-            <p>{{ user.age}}</p>
+            <p>{{ user.age }}</p>
           </div>
           <div>
             <strong>Last Active:</strong>
-            <p>{{ user.lastActive | timeAgo}}</p>
+            <p>{{ user.lastActive | timeAgo }}</p>
           </div>
           <div>
             <strong>Member since:</strong>
-            <p>{{ user.created | date}}</p>
+            <p>{{ user.created | date }}</p>
           </div>
         </div>
         <div class="card-footer">
           <div class="btn-group btn-block">
-            <button class="btn btn-danger ">Like</button>
+            <button class="btn btn-danger">Like</button>
             <button class="btn btn-success">Message</button>
           </div>
         </div>
@@ -39,20 +43,24 @@
         <tabset class="member-tabset">
           <tab heading="Description">
             <h4 class="h3">Introduction</h4>
-            {{user.introduction}}
+            {{ user.introduction }}
             <h4 class="h3">Looking for</h4>
-            {{user.lookingFor}}
+            {{ user.lookingFor }}
           </tab>
           <tab heading="Interests">
             <h3>Interests</h3>
-            {{user.interests}}
+            {{ user.interests }}
           </tab>
           <tab heading="Photos">
-             <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+           
+              <ngx-gallery
+                [options]="galleryOptions"
+                [images]="galleryImages"
+                class="ngx-gallery"
+              ></ngx-gallery>
+        
           </tab>
-          <tab heading="Message">
-            Basic content 2
-          </tab>
+          <tab heading="Message"> Basic content 2 </tab>
         </tabset>
       </div>
     </div>

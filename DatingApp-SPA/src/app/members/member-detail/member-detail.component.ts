@@ -1,11 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { User } from "src/app/_models/user";
-import {
-  NgxGalleryOptions,
-  NgxGalleryImage,
-  NgxGalleryAnimation,
-} from "ngx-gallery";
+import { NgxGalleryOptions } from "@kolkov/ngx-gallery";
+import { NgxGalleryImage } from "@kolkov/ngx-gallery";
+import { NgxGalleryAnimation } from "@kolkov/ngx-gallery";
 
 @Component({
   selector: "app-member-detail",
@@ -16,18 +14,20 @@ export class MemberDetailComponent implements OnInit {
   user: User;
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
+
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.route.data.subscribe((data) => {
       this.user = data["user"];
-      console.log(this.user);
     });
     this.galleryOptions = [
       {
-        width: "500px",
-        height: "500px",
+        width: "600px",
+        height: "400px",
         thumbnailsColumns: 4,
+        arrowPrevIcon: "fa fa-chevron-left",
+        arrowNextIcon: "fa fa-chevron-right",
         imageAnimation: NgxGalleryAnimation.Slide,
       },
       // max-width 800
