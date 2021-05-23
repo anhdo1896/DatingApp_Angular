@@ -23,7 +23,7 @@ export class MemberDetailComponent implements OnInit {
     });
     this.galleryOptions = [
       {
-        width: "600px",
+        width: "400px",
         height: "400px",
         thumbnailsColumns: 4,
         arrowPrevIcon: "fa fa-chevron-left",

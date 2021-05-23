@@ -4,7 +4,7 @@ import {
   HammerGestureConfig,
   HAMMER_GESTURE_CONFIG,
 } from "@angular/platform-browser";
-import { NgModule, Pipe } from "@angular/core";
+import { NgModule, Pipe, Injectable } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { JwtModule } from "@auth0/angular-jwt";
 import { HttpClientModule } from "@angular/common/http";
@@ -48,6 +48,7 @@ import { MemberEditResolver } from "./_resolvers/member-edit.resolver";
 import { PreventUnSavedChanges } from "./_guards/prevent-unsaved-changes.guard";
 import { BsDatepickerModule } from "ngx-bootstrap";
 
+@Injectable()
 export class CustomHammerConfig extends HammerGestureConfig {
   overrides = {
     pinch: { enable: false },

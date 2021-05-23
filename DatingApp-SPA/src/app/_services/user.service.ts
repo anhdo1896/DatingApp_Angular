@@ -69,4 +69,11 @@ export class UserService {
   deletePhoto(userId: number, id: number) {
     return this.http.delete(this.baseUri + "user/" + userId + "/photo/" + id);
   }
+
+  sendLike(id: number, recipientId: number) {
+    return this.http.post<User>(
+      this.baseUri + "user/" + id + "/like/" + recipientId,
+      {}
+    );
+  }
 }
