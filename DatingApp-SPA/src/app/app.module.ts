@@ -42,11 +42,15 @@ import { UserService } from "./_services/user.service";
 //#endregion Service
 import { environment } from "src/environments/environment";
 import { MemberDetailResolver } from "./_resolvers/member-detail.resolver";
+import { MemberListResolver } from "./_resolvers/member-list.resolver";
+import { ListsResolver } from "./_resolvers/lists.resolver";
+import { MessagesResolver } from "./_resolvers/messages.resolver";
 import { ErrorInterceptorProvider } from "./_services/error.interceptor";
 import { AuthGuard } from "./_guards/auth.guard";
 import { MemberEditResolver } from "./_resolvers/member-edit.resolver";
 import { PreventUnSavedChanges } from "./_guards/prevent-unsaved-changes.guard";
 import { BsDatepickerModule } from "ngx-bootstrap";
+import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
 
 @Injectable()
 export class CustomHammerConfig extends HammerGestureConfig {
@@ -75,6 +79,7 @@ export class CustomHammerConfig extends HammerGestureConfig {
     MemberEditComponent,
     PhotoEditComponent,
     TimeAgoPipe,
+    MemberMessagesComponent,
   ],
   imports: [
     BrowserModule,
@@ -107,6 +112,9 @@ export class CustomHammerConfig extends HammerGestureConfig {
     UserService,
     MemberDetailResolver,
     MemberEditResolver,
+    MemberListResolver,
+    ListsResolver,
+    MessagesResolver,
     PreventUnSavedChanges,
     { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig },
   ],

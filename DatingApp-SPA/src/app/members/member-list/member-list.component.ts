@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 import { PaginatedResult, Pagination } from "src/app/_models/pagination";
 import { User } from "../../_models/user";
 import { AlertifyService } from "../../_services/alertify.service";
@@ -22,22 +23,25 @@ export class MemberListComponent implements OnInit {
     gender: this.user.gender === "female" ? "male" : "female",
     orderBy: 'lastActive'
   };
-  pageNumber = 1;
-  pageSize = 5;
   pagination: Pagination;
 
   constructor(
     private userService: UserService,
-    private alertService: AlertifyService
+    private alertService: AlertifyService,
+    private route : ActivatedRoute
   ) {}
 
   ngOnInit() {
-    this.loadUsers();
+    // this.loadUsers();
+    this.route.data.subscribe(data => {
+      this.users = data['users'].result;
+      this.pagination = data['users'].pagination;
+    })
   }
 
   loadUsers() {
     this.userService
-      .getUsers(this.pageNumber, this.pageSize, this.userParams)
+      .getUsers(this.pagination.currentPage, this.pagination.itemsPerPage, this.userParams)
       .subscribe(
         (data: PaginatedResult<User[]>) => {
           this.users = data.result;
@@ -55,7 +59,7 @@ export class MemberListComponent implements OnInit {
     this.userParams.maxAge = 99;
   }
   pageChanged(event: any): void {
-    this.pageNumber = event.page;
+    this.pagination.currentPage = event.page;
     this.loadUsers();
   }
 }

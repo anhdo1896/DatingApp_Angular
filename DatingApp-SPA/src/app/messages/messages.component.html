@@ -1,1 +1,173 @@
-<p>messages works!</p>
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-md-3 col-sm-2">
+      <div class="card">
+        <div class="card-header text-white bg-dark">
+          <h4 class="card-title">Options</h4>
+        </div>
+        <div class="card-body p-0">
+          <ul class="nav nav-pills flex-column">
+            <li class="nav-item">
+              <a
+                style="cursor: pointer"
+                btnRadio="Unread"
+                class="nav-link"
+                class="nav-link"
+                [(ngModel)]="messageContainer"
+                [ngClass]="{ active: messageContainer === 'Unread' }"
+                (click)="loadMessage()"
+              >
+                <i class="fa fa-filter"></i> Unread
+                <span class="badge bg-warning text-dark float-right">{{
+                  this.messageUnread
+                }}</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                style="cursor: pointer"
+                btnRadio="Inbox"
+                class="nav-link"
+                class="nav-link"
+                [(ngModel)]="messageContainer"
+                [ngClass]="{ active: messageContainer === 'Inbox' }"
+                (click)="loadMessage()"
+              >
+                <i class="fa fa-inbox"></i> Inbox
+
+                <span class="badge bg-info text-white float-right">{{
+                  this.messageInbox
+                }}</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                style="cursor: pointer"
+                btnRadio="Outbox"
+                class="nav-link"
+                class="nav-link"
+                [(ngModel)]="messageContainer"
+                [ngClass]="{ active: messageContainer === 'Outbox' }"
+                (click)="loadMessage()"
+              >
+                <span class="badge bg-success text-white float-right">{{
+                  this.messageOutbox
+                }}</span>
+                <i class="fa fa-paper-plane"></i> Sent
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!-- /.card-body -->
+      </div>
+    </div>
+    <div class="col-md-9 col-sm-10">
+      <div class="card">
+        <div class="card-header bg-dark text-white">
+          <div class="row">
+            <div class="col-md-5 col-sm-2">
+              <h4 class="card-title">Messages</h4>
+            </div>
+          </div>
+
+          <!-- /.card-tools -->
+        </div>
+        <div *ngIf="messages.length == 0">No message...</div>
+        <!-- /.card-header -->
+        <div class="card-body p-0" *ngIf="messages.length > 0">
+          <div class="table-responsive mailbox-messages">
+            <table class="table table-hover table-striped text-center">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>From</th>
+                  <th>To</th>
+                  <th>Message</th>
+                  <th>Sent/Received</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr
+                  *ngFor="let message of messages; let i = index"
+                  [routerLink]="[
+                    '/members',
+                    messageContainer == 'Outbox'
+                      ? message.recipientId
+                      : message.senderId
+                  ]"
+                  [queryParams]="{ tab: 3 }"
+                >
+                  <td class="mailbox-name">
+                    <a>
+                      {{
+                        (pagination.currentPage - 1) * pagination.itemsPerPage +
+                          i +
+                          1
+                      }}</a
+                    >
+                  </td>
+
+                  <td class="mailbox-name">
+                    <img
+                      [src]="message.senderPhotoUrl"
+                      class="img-circle rounded-circle mr-1"
+                    />
+                    <a>{{ message.senderKnownAs }}</a>
+                  </td>
+                  <td class="mailbox-name">
+                    <img
+                      [src]="message.recipientPhotoUrl"
+                      class="img-circle rounded-circle mr-1"
+                    />
+                    <a>{{ message.recipientKnownAs }}</a>
+                  </td>
+                  <td class="mailbox-subject">{{ message.content }}</td>
+
+                  <td class="mailbox-date">
+                    {{ message.messageSent | timeAgo }}
+                  </td>
+                  <td class="mailbox-date">
+                    <button
+                      type="button"
+                      class="btn btn-danger btn-sm"
+                      (click) ="$event.stopPropagation()"
+                      (click)="deleteMessage(message.id)"
+                    >
+                      <i class="fa fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <!-- /.table -->
+          </div>
+          <!-- /.mail-box-messages -->
+        </div>
+        <!-- /.card-body -->
+
+        <!-- Check all button -->
+
+        <!-- /.btn-group -->
+
+        <!-- /.card -->
+      </div>
+      <div class="d-flex justify-content-center mt-3">
+        <pagination
+          [boundaryLinks]="true"
+          [totalItems]="pagination.totalItems"
+          [itemsPerPage]="pagination.itemsPerPage"
+          [(ngModel)]="pagination.currentPage"
+          (pageChanged)="pageChanged($event)"
+          previousText="&lsaquo;"
+          nextText="&rsaquo;"
+          firstText="&laquo;"
+          lastText="&raquo;"
+        >
+        </pagination>
+        <!-- /.btn-group -->
+      </div>
+    </div>
+  </div>
+</div>

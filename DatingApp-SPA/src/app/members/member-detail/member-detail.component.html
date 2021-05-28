@@ -33,14 +33,14 @@
         <div class="card-footer">
           <div class="btn-group btn-block">
             <button class="btn btn-danger">Like</button>
-            <button class="btn btn-success">Message</button>
+            <button class="btn btn-success" (click)="selectTabs(3)">Message</button>
           </div>
         </div>
       </div>
     </div>
     <div class="col-sm-8 mb-2">
       <div class="tab-panel">
-        <tabset class="member-tabset">
+        <tabset class="member-tabset" #memberTabs>
           <tab heading="Description">
             <h4 class="h3">Introduction</h4>
             {{ user.introduction }}
@@ -52,15 +52,15 @@
             {{ user.interests }}
           </tab>
           <tab heading="Photos">
-           
-              <ngx-gallery
-                [options]="galleryOptions"
-                [images]="galleryImages"
-                class="ngx-gallery"
-              ></ngx-gallery>
-        
+            <ngx-gallery
+              [options]="galleryOptions"
+              [images]="galleryImages"
+              class="ngx-gallery"
+            ></ngx-gallery>
           </tab>
-          <tab heading="Message"> Basic content 2 </tab>
+          <tab heading="Message">
+            <app-member-messages [recipientId]="user.id"></app-member-messages>
+          </tab>
         </tabset>
       </div>
     </div>
