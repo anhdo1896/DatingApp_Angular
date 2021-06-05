@@ -1,3 +1,4 @@
+import { environment } from "src/environments/environment";
 //#region Module
 import {
   BrowserModule,
@@ -16,6 +17,8 @@ import { AppRoutingModule } from "./app-routing.module";
 import { FileUploadModule } from "ng2-file-upload";
 import { PaginationModule } from "ngx-bootstrap/pagination";
 import { ButtonsModule } from "ngx-bootstrap/buttons";
+import { BsDatepickerModule } from "ngx-bootstrap";
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 //#endregion Module
 
@@ -31,6 +34,11 @@ import { MemberCardComponent } from "./members/member-card/member-card.component
 import { MemberDetailComponent } from "./members/member-detail/member-detail.component";
 import { MemberEditComponent } from "./members/member-edit/member-edit.component";
 import { PhotoEditComponent } from "./members/photo-edit/photo-edit.component";
+import { HasRoleDirective } from "./_directives/has-role.directive";
+import { AdminComponent } from "./admin/admin-panel/admin.component";
+import { UserManagementComponent } from "./admin/user-management/user-management.component";
+import { PhotoManagementComponent } from "./admin/photo-management/photo-management.component";
+import { MemberMessagesComponent } from "./members/member-messages/member-messages.component";
 import { TimeAgoPipe } from "time-ago-pipe";
 
 //#endregion Component
@@ -38,19 +46,25 @@ import { TimeAgoPipe } from "time-ago-pipe";
 //#region Service
 import { AuthService } from "./_services/auth.service";
 import { UserService } from "./_services/user.service";
+import { ErrorInterceptorProvider } from "./_services/error.interceptor";
 
 //#endregion Service
-import { environment } from "src/environments/environment";
+
+//#region resolver
 import { MemberDetailResolver } from "./_resolvers/member-detail.resolver";
 import { MemberListResolver } from "./_resolvers/member-list.resolver";
 import { ListsResolver } from "./_resolvers/lists.resolver";
 import { MessagesResolver } from "./_resolvers/messages.resolver";
-import { ErrorInterceptorProvider } from "./_services/error.interceptor";
-import { AuthGuard } from "./_guards/auth.guard";
 import { MemberEditResolver } from "./_resolvers/member-edit.resolver";
+
+//#endregion resolver
+
+//#region guard
+import { AuthGuard } from "./_guards/auth.guard";
 import { PreventUnSavedChanges } from "./_guards/prevent-unsaved-changes.guard";
-import { BsDatepickerModule } from "ngx-bootstrap";
-import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
+import { RoleModalComponent } from './admin/role-modal/role-modal.component';
+
+//#endregion guard
 
 @Injectable()
 export class CustomHammerConfig extends HammerGestureConfig {
@@ -59,11 +73,6 @@ export class CustomHammerConfig extends HammerGestureConfig {
     rotate: { enable: false },
   };
 }
-// @Pipe({
-//   name: 'timeAgo',
-//   pure: false
-// })
-// export class TimeAgoExtendsPipe extends TimeAgoPipe {}
 
 @NgModule({
   declarations: [
@@ -80,6 +89,11 @@ export class CustomHammerConfig extends HammerGestureConfig {
     PhotoEditComponent,
     TimeAgoPipe,
     MemberMessagesComponent,
+    AdminComponent,
+    HasRoleDirective,
+    UserManagementComponent,
+    PhotoManagementComponent,
+    RoleModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -92,6 +106,7 @@ export class CustomHammerConfig extends HammerGestureConfig {
     TabsModule.forRoot(),
     PaginationModule.forRoot(),
     ButtonsModule.forRoot(),
+    ModalModule.forRoot(),
     AppRoutingModule,
     NgxGalleryModule,
     FileUploadModule,
@@ -117,6 +132,9 @@ export class CustomHammerConfig extends HammerGestureConfig {
     MessagesResolver,
     PreventUnSavedChanges,
     { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig },
+  ],
+  entryComponents: [
+    RoleModalComponent
   ],
   bootstrap: [AppComponent],
 })

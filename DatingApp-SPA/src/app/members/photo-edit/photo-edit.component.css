@@ -8,3 +8,16 @@
 input[type='file']{
   color: transparent;
 }
+
+.not-approved{
+  opacity: 0.5;
+}
+
+.img-wrapper{
+  position: relative;
+}
+
+.text-img {
+  position: absolute;
+  bottom: 30%;
+}
