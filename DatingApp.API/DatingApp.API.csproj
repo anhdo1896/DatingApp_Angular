@@ -19,5 +19,6 @@
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="5.0.0-alpha.1"/>
     <PackageReference Include="Microsoft.AspNetCore.Metadata" Version="5.0.3"/>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="5.0.5"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="5.0.5"/>
   </ItemGroup>
 </Project>

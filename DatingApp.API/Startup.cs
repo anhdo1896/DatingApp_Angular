@@ -36,22 +36,30 @@ namespace DatingApp.API
             // .GetConnectionString("DefaultConnection")));
 
             // ConfigureServices(services);
-             services.AddDbContext<DataContext>(x => x.UseMySql(Configuration
-           .GetConnectionString("DefaultConnection")));
-
+            services.AddDbContext<DataContext>(x =>
+              {
+                  x.UseLazyLoadingProxies();
+                  x.UseMySql(Configuration
+                  .GetConnectionString("DefaultConnection"));
+  
+              });
             // services.AddDbContext<DataContext>(x => x.UseSqlServer(Configuration
             // .GetConnectionString("DefaultConnectionSql")));
-            
+
             ConfigureServices(services);
         }
         public void ConfigureProductionServices(IServiceCollection services)
         {
-            services.AddDbContext<DataContext>(x => x.UseMySql(Configuration
-           .GetConnectionString("DefaultConnection")));
+            services.AddDbContext<DataContext>(x =>
+            {
+                x.UseLazyLoadingProxies();
+                x.UseMySql(Configuration
+                .GetConnectionString("DefaultConnection"));
+            });
 
             // services.AddDbContext<DataContext>(x => x.UseSqlServer(Configuration
             // .GetConnectionString("DefaultConnectionSql")));
-            
+
             ConfigureServices(services);
 
         }
