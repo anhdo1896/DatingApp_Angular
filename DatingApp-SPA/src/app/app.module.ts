@@ -64,7 +64,11 @@ import { AuthGuard } from "./_guards/auth.guard";
 import { PreventUnSavedChanges } from "./_guards/prevent-unsaved-changes.guard";
 import { RoleModalComponent } from './admin/role-modal/role-modal.component';
 
+
 //#endregion guard
+export function tokenGetter() {
+  return localStorage.getItem("token");
+};
 
 @Injectable()
 export class CustomHammerConfig extends HammerGestureConfig {
@@ -73,6 +77,7 @@ export class CustomHammerConfig extends HammerGestureConfig {
     rotate: { enable: false },
   };
 }
+
 
 @NgModule({
   declarations: [
@@ -112,11 +117,9 @@ export class CustomHammerConfig extends HammerGestureConfig {
     FileUploadModule,
     JwtModule.forRoot({
       config: {
-        tokenGetter: () => {
-          return localStorage.getItem("token");
-        },
+        tokenGetter,
         allowedDomains: ["localhost:5000"],
-        disallowedRoutes: [environment.baseUri + "/auth/"],
+        disallowedRoutes: ["localhost:5000"+ "/auth/"],
       },
     }),
   ],

@@ -49,6 +49,7 @@ namespace DatingApp.API.Controllers
         }
 
         [HttpPost]
+        [System.Obsolete]
         public async Task<IActionResult> AddPhotoForUser(int userId, [FromForm]PhotoForCreationDto photoForCreationDto)
         {
             if (userId != int.Parse((User.FindFirst(ClaimTypes.NameIdentifier)).Value))

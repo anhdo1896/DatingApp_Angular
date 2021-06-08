@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using DatingApp.API.Data;
 using DatingApp.API.Models;
 using Microsoft.AspNetCore.Hosting;
@@ -12,7 +13,7 @@ namespace DatingApp.API
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static  async Task  Main(string[] args)
         {
            var host =  CreateHostBuilder(args).Build();
             using(var scope = host.Services.CreateScope())
@@ -20,11 +21,12 @@ namespace DatingApp.API
                 var services = scope.ServiceProvider;
                 try
                 {
+            
                     var context = services.GetRequiredService<DataContext>();
                     var userManager = services.GetRequiredService<UserManager<User>>();
                     var roleManager = services.GetRequiredService<RoleManager<Role>>();
-                    context.Database.Migrate();
-                    Seed.SeedUser(userManager,roleManager);
+                    await context.Database.MigrateAsync();
+                    await Seed.SeedUser(userManager,roleManager);
                 }
                 catch(Exception ex)
                 {
@@ -32,7 +34,7 @@ namespace DatingApp.API
                     logger.LogError(ex, "An error orcured during migration");
                 }
             }
-            host.Run();
+           await host.RunAsync();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
