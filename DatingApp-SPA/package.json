@@ -22,7 +22,7 @@
     "@auth0/angular-jwt": "^5.0.2",
     "@kolkov/ngx-gallery": "^1.2.3",
     "alertifyjs": "^1.13.1",
-    "bootstrap": "^4.6.0",
+    "bootstrap": "^4.6.2",
     "bootswatch": "^4.6.0",
     "font-awesome": "^4.7.0",
     "ng2-file-upload": "^1.4.0",
