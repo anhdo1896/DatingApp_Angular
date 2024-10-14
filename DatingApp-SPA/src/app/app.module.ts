@@ -50,7 +50,7 @@ import { AuthGuard } from "./_guards/auth.guard";
 import { MemberEditResolver } from "./_resolvers/member-edit.resolver";
 import { PreventUnSavedChanges } from "./_guards/prevent-unsaved-changes.guard";
 import { BsDatepickerModule } from "ngx-bootstrap";
-import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
+import { MemberMessagesComponent } from "./members/member-messages/member-messages.component";
 
 @Injectable()
 export class CustomHammerConfig extends HammerGestureConfig {
@@ -100,7 +100,7 @@ export class CustomHammerConfig extends HammerGestureConfig {
         tokenGetter: () => {
           return localStorage.getItem("token");
         },
-        allowedDomains: ["localhost:5000"],
+        allowedDomains: [environment.urlShort],
         disallowedRoutes: [environment.baseUri + "/auth/"],
       },
     }),
