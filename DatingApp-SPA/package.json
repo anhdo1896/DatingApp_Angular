@@ -23,7 +23,7 @@
     "@kolkov/ngx-gallery": "^1.2.3",
     "alertifyjs": "^1.13.1",
     "bootstrap": "^4.6.0",
-    "bootswatch": "^4.6.0",
+    "bootswatch": "^4.6.2",
     "font-awesome": "^4.7.0",
     "ng2-file-upload": "^1.4.0",
     "ngx-bootstrap": "^4.1.1",
